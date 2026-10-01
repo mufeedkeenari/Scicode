@@ -43,13 +43,13 @@ Semantic review is required to assess scientific test quality and whether the fi
 | E6 | golden <final_answer> matches the final integration case | PASS | 0 |
 | E7 | golden / integration / computed triple agrees | PASS | 0 |
 
-## Stage: precalibration - WARN
+## Stage: precalibration - PASS
 
 | check | description | result | findings |
 |---|---|---|---|
 | S23 | advisory only: numeric overlap with the golden final answer | PASS | 0 |
 | P2 | cases produce distinct results (normal/boundary/edge) | PASS | 0 |
-| P35 | local comparator acceptance bounds, including small signals and relative tolerance | WARN | 1 |
+| P35 | local comparator acceptance bounds, including small signals and relative tolerance | PASS | 0 |
 | P3 | invalid-input coverage (ValueError contract exercised) | PASS | 0 |
 | P4 | syntactic exception evidence for mandatory LLM contract review P31 | REVIEW REQUIRED | 0 |
 | P5 | explicit oracle return-site coverage only; P16 LLM coverage review still required | PASS | 0 |
@@ -60,9 +60,6 @@ Semantic review is required to assess scientific test quality and whether the fi
 | P26 | runtime observations for mandatory LLM state/dependency review P30 | REVIEW REQUIRED | 0 |
 | P27 | no step passable by a constant-return function | PASS | 0 |
 | P34 | wording to assess for qualification in LLM review P32 | PASS | 0 |
-
-Findings:
-- WARN [P35] 03_compute_short_range_pressure.py case 2, gold: local comparator allows |candidate-gold| <= 1e-09 + 1e-09*|gold| (default tol 1e-09, including this scalar/array's scale floor). At the largest finite gold magnitude 8.33e-08, the allowed error is 1.2% of that magnitude. Assess whether these admitted differences matter to the case's required behavior and precision.
 
 ## Required semantic review
 
