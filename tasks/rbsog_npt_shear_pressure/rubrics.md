@@ -98,7 +98,7 @@ Scientific Reasoning
 
 #### Description
 
-This makes $k\cdot r=2\pi\,m\cdot s$ for fractional coordinates $s$ and reproduces the periodicity of the sheared cell. Using $h^{-1}m$ gives wrong wavevectors for this non-orthogonal cell.
+This makes $k\cdot r=2\pi\,m\cdot s$ for fractional coordinates $s$ and reproduces the periodicity of the sheared cell. Equivalent statements count, such as $k=\sum_i m_ib_i$ with reciprocal vectors $a_i\cdot b_j=2\pi\delta_{ij}$, or $k=2\pi h^{-1}m$ when $h$ is defined with the lattice vectors as rows. With the lattice vectors as the columns of $h$, $2\pi h^{-1}m$ gives wrong wavevectors for this non-orthogonal cell.
 
 ### 6
 
@@ -152,7 +152,7 @@ Scientific Reasoning
 
 #### Description
 
-This is the off-diagonal entry of the converged Fourier-space pressure tensor; integer vectors with $|m_d|\le4$ already converge it, and only the non-radial part contributes. Together with the short-range part it gives $P_{xy}=-1.6542\times10^{-4}\ e^2/\text{Å}^4$.
+This is the off-diagonal entry of the converged Fourier-space pressure tensor; integer vectors with $|m_d|\le4$ already converge it, and only the non-radial part contributes. Together with the short-range part it gives $P_{xy}=-1.6542\times10^{-4}\ e^2/\text{Å}^4$. The same value expressed in other pressure units counts.
 
 ### 9
 
@@ -188,13 +188,13 @@ Scientific Reasoning
 
 #### Description
 
-The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$ with mean $-7.657\times10^{-5}$, where $S^{\rm nr}=\pi^{3/2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7|k|^4e^{-\tilde s_\ell^2|k|^2/4}$ normalizes $\mathscr P^{\rm nr}$ ($\tilde w_\ell,\tilde s_\ell$ the long-range Gaussian weights, with $\tilde w_0$ rescaled by $\tilde\omega$, and widths). A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count.
+The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$ with mean $-7.657\times10^{-5}$, where $S^{\rm nr}=\pi^{3/2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7|k|^4e^{-\tilde s_\ell^2|k|^2/4}$ normalizes $\mathscr P^{\rm nr}$ ($\tilde w_\ell,\tilde s_\ell$ the long-range Gaussian weights, with $\tilde w_0$ rescaled by $\tilde\omega$, and widths). A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count. The same value expressed in other units of squared pressure counts.
 
 ### 11
 
 #### Criterion
 
-Computes the relative standard error of the $P=128$ random-batch estimate of $P_{xy}$ as 0.3785 (within ±0.5 %, i.e. 0.3766 to 0.3804).
+Computes the relative standard error of the random-batch estimate of $P_{xy}$ with batch size $P=128$ as 0.3785 (within ±0.5 %, i.e. 0.3766 to 0.3804).
 
 #### Category
 
