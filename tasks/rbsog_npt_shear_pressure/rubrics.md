@@ -2,7 +2,7 @@
 
 #### Criterion
 
-Identifies the sum-of-Gaussians approximation of the pressure kernel $1/r^3$, with splitting parameters $\tilde b,\tilde\sigma$, as $\sum_\ell\tilde w_\ell e^{-r^2/\tilde s_\ell^2}$ with $\tilde w_\ell=(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{3\ell}\tilde\sigma^3)$ and $\tilde s_\ell=\sqrt2\,\tilde b^{\ell}\tilde\sigma$, its long-range part keeping $\ell=0,\dots,\tilde M-1$.
+Identifies the sum-of-Gaussians approximation of the pressure kernel $1/r^3$, with splitting parameters $\tilde b,\tilde\sigma$ and $\tilde M$ retained long-range Gaussians, as $\sum_\ell\tilde w_\ell e^{-r^2/\tilde s_\ell^2}$ with $\tilde w_\ell=(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{3\ell}\tilde\sigma^3)$ and $\tilde s_\ell=\sqrt2\,\tilde b^{\ell}\tilde\sigma$, its long-range part keeping $\ell=0,\dots,\tilde M-1$.
 
 #### Category
 
@@ -24,7 +24,7 @@ https://arxiv.org/abs/2602.23582
 
 #### Criterion
 
-Identifies the non-radial importance distribution over nonzero Fourier wavevectors $k$, with $\tilde w_\ell,\tilde s_\ell$ the rescaled long-range weights and widths, as $\mathscr P^{\rm nr}(k)\propto\sum_\ell\tilde w_\ell\tilde s_\ell^{7}|k|^4e^{-\tilde s_\ell^2|k|^2/4}$.
+Identifies the non-radial importance distribution over nonzero Fourier wavevectors $k$, with $\tilde w_\ell,\tilde s_\ell$ the weights and widths of the retained long-range Gaussians of the $1/r^3$ splitting ($\ell=0,\dots,\tilde M-1$), as $\mathscr P^{\rm nr}(k)\propto\sum_\ell\tilde w_\ell\tilde s_\ell^{7}|k|^4e^{-\tilde s_\ell^2|k|^2/4}$.
 
 #### Category
 
@@ -68,7 +68,7 @@ https://arxiv.org/abs/2602.23582
 
 #### Criterion
 
-Derives the long-range (Fourier-space) pressure tensor, with $V=\det h$, wavevectors $k\neq0$ and charge structure factor $\rho(k)=\sum_jq_je^{ik\cdot r_j}$, as $P^{\mathcal F}=\frac{\pi^{3/2}}{4V^2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^5e^{-\tilde s_\ell^2|k|^2/4}\big(I-\tfrac{\tilde s_\ell^2}{2}k\otimes k\big)|\rho(k)|^2$.
+Derives the long-range (Fourier-space) pressure tensor, with $V=\det h$, $\tilde w_\ell,\tilde s_\ell$ the weights and widths of the retained long-range Gaussians of the $1/r^3$ splitting ($\ell=0,\dots,\tilde M-1$), wavevectors $k\neq0$ and charge structure factor $\rho(k)=\sum_jq_je^{ik\cdot r_j}$, as $P^{\mathcal F}=\frac{\pi^{3/2}}{4V^2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^5e^{-\tilde s_\ell^2|k|^2/4}\big(I-\tfrac{\tilde s_\ell^2}{2}k\otimes k\big)|\rho(k)|^2$.
 
 #### Category
 
@@ -170,7 +170,7 @@ Scientific Reasoning
 
 #### Description
 
-This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent expression, such as $\mathbb E[X^2]-(\mathbb E X)^2$ written out for the non-radial estimate, counts.
+This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent form that makes the sampling distribution explicit, such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$ for the non-radial estimate, counts.
 
 ### 10
 
@@ -188,7 +188,7 @@ Scientific Reasoning
 
 #### Description
 
-The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$ with mean $-7.657\times10^{-5}$. A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count.
+The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$ with mean $-7.657\times10^{-5}$, where $S^{\rm nr}=\pi^{3/2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7|k|^4e^{-\tilde s_\ell^2|k|^2/4}$ normalizes $\mathscr P^{\rm nr}$ ($\tilde w_\ell,\tilde s_\ell$ the long-range Gaussian weights, with $\tilde w_0$ rescaled by $\tilde\omega$, and widths). A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count.
 
 ### 11
 
