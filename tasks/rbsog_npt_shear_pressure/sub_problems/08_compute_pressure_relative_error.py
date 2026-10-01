@@ -1,5 +1,5 @@
 """
-Compute the relative standard error of the random-batch sum-of-Gaussians estimate of an off-diagonal (shear) component of the instantaneous Coulomb pressure tensor for a given batch size (end-to-end pipeline; orchestrator).
+Compute the relative standard error of the random-batch estimate, under the sum-of-Gaussians splitting, of an off-diagonal (shear) component of the instantaneous Coulomb pressure tensor for a given batch size (end-to-end pipeline; orchestrator).
 
 The deterministic reference value of the (mu, nu) shear component is the rescaled
 sum-of-Gaussians pressure tensor: its short-range real-space part plus its full long-range
@@ -7,7 +7,7 @@ Fourier-space part (radial plus non-radial) on the truncated mode set. In the ra
 method the short-range part is evaluated exactly, while the long-range part is replaced by
 importance-sampled mini-batches of Fourier modes. Here the batch_size modes of the
 non-radial estimate are treated as independent draws from the non-radial importance
-distribution, i.e. an ideally mixed measure-recalibration chain.
+distribution, i.e. an ideally mixed Metropolis-Hastings re-weighting chain.
 
 The returned quantity is the standard deviation of the batch estimate of the (mu, nu)
 component divided by the magnitude of its deterministic reference value (dimensionless).
