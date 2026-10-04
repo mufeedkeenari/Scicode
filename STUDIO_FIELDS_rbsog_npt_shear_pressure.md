@@ -154,7 +154,7 @@ Browsing
 **Item 1 · Description**
 
 ```markdown
-This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent prefactors, such as $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$, count.
+This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent prefactors, such as $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$, count. A series with a different prefactor (for example the $1/r$ weights $(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{\ell}\tilde\sigma)$), widths $\tilde b^{\ell}\tilde\sigma$ without the factor $\sqrt2$, or a retained range other than $\ell=0,\dots,\tilde M-1$ does not count.
 ```
 
 **Item 1 · Source**
@@ -218,7 +218,7 @@ Browsing
 **Item 3 · Description**
 
 ```markdown
-The method's radial part collects the identity-proportional term of each Fourier mode, so each of its samples is isotropic. The shear-component noise therefore comes only from the non-radial estimate.
+The method's radial part collects the identity-proportional term of each Fourier mode, so each of its samples is isotropic. The shear-component noise therefore comes only from the non-radial estimate. A response that attributes any part of the $P_{xy}$ noise to the radial estimate, or adds a radial variance term to the shear variance, does not count.
 ```
 
 **Item 3 · Source**
@@ -250,7 +250,7 @@ Scientific Reasoning
 **Item 4 · Description**
 
 ```markdown
-This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count.
+This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count. An expression that omits the $-\tfrac{\tilde s_\ell^2}{2}k\otimes k$ term, uses $\tilde s_\ell^3$ in place of $\tilde s_\ell^5$, or has a prefactor other than $\pi^{3/2}/(4V^2)$ does not count.
 ```
 
 ### Rubric item 5
@@ -302,7 +302,7 @@ Scientific Reasoning
 **Item 6 · Description**
 
 ```markdown
-Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %.
+Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %. Values outside 1.0112 to 1.0116, including $\tilde\omega=1$ (no rescaling), do not count.
 ```
 
 ### Rubric item 7
@@ -354,7 +354,7 @@ Scientific Reasoning
 **Item 8 · Description**
 
 ```markdown
-This is the off-diagonal entry of the converged Fourier-space pressure tensor; integer vectors with $|m_d|\le4$ already converge it, and only the non-radial part contributes. Together with the short-range part it gives $P_{xy}=-1.6542\times10^{-4}\ e^2/\text{Å}^4$. The same value expressed in other pressure units counts.
+This is the off-diagonal entry of the converged Fourier-space pressure tensor; integer vectors with $|m_d|\le4$ already converge it, and only the non-radial part contributes. Together with the short-range part it gives $P_{xy}=-1.6542\times10^{-4}\ e^2/\text{Å}^4$. The same value expressed in other pressure units counts. Values outside ±0.5 %, such as $-7.571\times10^{-5}$ from omitting the narrowest-weight rescaling, do not count.
 ```
 
 ### Rubric item 9
@@ -380,7 +380,7 @@ Scientific Reasoning
 **Item 9 · Description**
 
 ```markdown
-This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent form that makes the sampling distribution explicit, such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$ for the non-radial estimate, counts.
+This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent form that makes the sampling distribution explicit, such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$ for the non-radial estimate, counts. Using the source's variance bound as an equality, weighting by a distribution other than $\mathscr P$, or omitting the $-\mu^2$ term does not count.
 ```
 
 ### Rubric item 10
@@ -406,7 +406,7 @@ Scientific Reasoning
 **Item 10 · Description**
 
 ```markdown
-The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$ with mean $-7.657\times10^{-5}$, where $S^{\rm nr}=\pi^{3/2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7|k|^4e^{-\tilde s_\ell^2|k|^2/4}$ normalizes $\mathscr P^{\rm nr}$ ($\tilde w_\ell,\tilde s_\ell$ the long-range Gaussian weights, with $\tilde w_0$ rescaled by $\tilde\omega$, and widths). A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count. The same value expressed in other units of squared pressure counts.
+The single-mode estimate is $-S^{\rm nr}|\rho(k)|^2k_xk_y/(8V^2|k|^4)$, whose mean is the long-range $P_{xy}$, where $S^{\rm nr}=\pi^{3/2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7|k|^4e^{-\tilde s_\ell^2|k|^2/4}$ normalizes $\mathscr P^{\rm nr}$ ($\tilde w_\ell,\tilde s_\ell$ the long-range Gaussian weights, with $\tilde w_0$ rescaled by $\tilde\omega$, and widths). A value of $8.97\times10^{-7}$, from treating the source's variance bound as an equality, or $9.09\times10^{-7}$, from sampling the radial proposal, does not count. The same value expressed in other units of squared pressure counts.
 ```
 
 ### Rubric item 11
