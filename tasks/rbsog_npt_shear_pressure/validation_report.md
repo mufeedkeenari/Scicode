@@ -11,12 +11,12 @@ Semantic review is required to assess scientific test quality and whether the fi
 | S1 | deliverables present/readable, no placeholder text | PASS | 0 |
 | S2 | >=7 step files, NN_snake_case, sequential | PASS | 0 |
 | S3 | one public function per step; stub is docstring + bare return | PASS | 0 |
-| S4 | one matching oracle per step; consistent _oracle_ or _gold_ prefix | PASS | 0 |
+| S4 | exactly one _oracle_<public> per step; no _gold_ prefix | PASS | 0 |
 | S5 | Oracle imports/helpers survive Studio field and driver extraction | PASS | 0 |
-| S6 | every _oracle_ or _gold_ name referenced in tests exists | PASS | 0 |
+| S6 | every _oracle_ name referenced in tests exists | PASS | 0 |
 | S7 | oracle/helper unshadowed global calls do not use public step names | PASS | 0 |
 | S8 | RNG discipline: no np.random.seed / legacy draws | PASS | 0 |
-| S9 | stub and oracle signatures match; missing annotations advisory | PASS | 0 |
+| S9 | stub and oracle fully annotated with matching signatures | PASS | 0 |
 | S10 | isolated step factory: >=3 cases, setup/call/gold_call strings | PASS | 0 |
 | S11 | except-hygiene in test setups | PASS | 0 |
 | S12 | isolated integration factory: expression schema, literal value types, public final call | PASS | 0 |
@@ -29,6 +29,7 @@ Semantic review is required to assess scientific test quality and whether the fi
 | S21 | every public function takes at least one parameter | PASS | 0 |
 | S22 | same-named functions are identical across files | PASS | 0 |
 | S24 | Studio section boundaries and documentation placement | PASS | 0 |
+| S25 | each test side builds its inputs and helpers from its own implementations | PASS | 0 |
 
 ## Stage: execute - PASS
 
@@ -46,7 +47,9 @@ Semantic review is required to assess scientific test quality and whether the fi
 
 | check | description | result | findings |
 |---|---|---|---|
+| S23 | advisory only: numeric overlap with the golden final answer | PASS | 0 |
 | P2 | cases produce distinct results (normal/boundary/edge) | PASS | 0 |
+| P35 | local comparator acceptance bounds, including small signals and relative tolerance | PASS | 0 |
 | P3 | invalid-input coverage (ValueError contract exercised) | PASS | 0 |
 | P4 | syntactic exception evidence for mandatory LLM contract review P31 | REVIEW REQUIRED | 0 |
 | P5 | explicit oracle return-site coverage only; P16 LLM coverage review still required | PASS | 0 |
@@ -57,7 +60,6 @@ Semantic review is required to assess scientific test quality and whether the fi
 | P26 | runtime observations for mandatory LLM state/dependency review P30 | REVIEW REQUIRED | 0 |
 | P27 | no step passable by a constant-return function | PASS | 0 |
 | P34 | wording to assess for qualification in LLM review P32 | PASS | 0 |
-| P35 | local comparator acceptance bounds, including small signals and relative tolerance | PASS | 0 |
 
 ## Required semantic review
 
@@ -65,7 +67,7 @@ REVIEW REQUIRED is a pending LLM assessment, not a mechanical failure or a seman
 
 ### P16 (S12/E5/E6/E7) - REVIEW REQUIRED
 
-Assess per-step test coverage, model/oracle dependencies and the integration tests under prompts/task-review.md's Representative test coverage, Model and oracle dependencies and Integration tests sections. Record evidence or verification limits; mechanical agreement here does not complete that review.
+Assess per-step test coverage, model/oracle dependencies and the integration tests under SKILL.md's Representative test coverage, Model and oracle dependencies and Integration tests sections. Record evidence or verification limits; mechanical agreement here does not complete that review.
 
 Evidence collection: COLLECTED.
 
@@ -84,7 +86,7 @@ No observations collected; semantic review is still required.
 
 ### P31 (P4) - REVIEW REQUIRED
 
-Determine which exceptions are tested or can escape for documented inputs and whether the module or public function docstring states that contract consistently with the scientific background. Check consistent documentation placement across steps and agreement between overlapping descriptions. Raise ValueError for invalid data actually supplied by the task’s tests or function calls, including upstream calls reached from valid downstream inputs. Functions may rely on established preconditions. Validation is required only for invalid data passed by tests included in the task. Additional validation solely for hypothetical invalid calls is not required. Invalid-input tests are optional. Syntactic raise/except references may be caught, unused, or incidental; name matching is not a contract verdict.
+Determine which exceptions are tested or can escape for documented inputs and whether the public function's docstring states that contract, consistently with the scientific background. New Studio uploads put parameter, return and exception documentation in the public function's docstring. Raise ValueError for invalid data actually supplied by the task’s tests or function calls, including upstream calls reached from valid downstream inputs. Functions may rely on established preconditions. Validation is required only for invalid data passed by tests included in the task. Additional validation solely for hypothetical invalid calls is not required. Invalid-input tests are optional. Syntactic raise/except references may be caught, unused, or incidental; name matching is not a contract verdict.
 
 Evidence collection: COLLECTED.
 
