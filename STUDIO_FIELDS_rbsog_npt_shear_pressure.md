@@ -13,10 +13,9 @@ Paste only these; every other field in Studio is already correct.
 7. **Rubric item 9:** new Description.
 8. **Rubric item 10:** new Description.
 9. **Browsing sources:** new Justification.
-10. **Steps 01-08:** clear every "Expected return line" field.
 
 Weights after the edits: 5, 10, 2, 5, 2, 5, 7, 7, 5, 8, 10 (total 66; Browsing = items 2 and 3 = 12/66 = 18.2%).
-These change the rubric and the code-stage step text, so run **one full calibration** after pasting.
+These change the rubric, so run **one full calibration** after pasting.
 
 ## 1 · Task, subject and area
 
@@ -451,7 +450,7 @@ This equals $\sqrt{5.018\times10^{-7}/128}/|{-1.6542\times10^{-4}}|=6.261\times1
 
 ## 7 · Sub-problems (8 steps; step 08 is the final orchestrator)
 
-> **Expected return line fields: leave all eight empty.** The current writer skill has no such section. Studio renders this field into the module docstring as a `Returns` block, and the writer validator then fails S24 on every step. The return value is already documented in each public function's docstring.
+> **Expected return line fields: kept in Studio (author's choice).** Studio renders each one into the module docstring as a `Returns` block. The current writer validator flags that as S24 on all eight steps; the reviewer validator and Studio QC pass. The text duplicates each public function's documented return value.
 
 ### Step 01 · compute_pressure_kernel_gaussians
 
@@ -514,7 +513,11 @@ def compute_pressure_kernel_gaussians(b: float, sigma: float, n_terms: int) -> "
     return weights, widths
 ```
 
-**Step 01 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 01 · Expected return line**
+
+```text
+tuple (weights, widths) of two float np.ndarray of shape (n_terms,): the weights w_l in Angstrom^-3 (before rescaling of the narrowest weight) and the widths s_l in Angstrom of the terms w_l * exp(-r^2 / s_l^2), both ordered from the narrowest to the widest Gaussian
+```
 
 **Step 01 · Oracle (gold solution)**
 
@@ -650,7 +653,11 @@ def compute_narrowest_weight_factor(b: float, sigma: float, n_terms: int, r_cut:
     return omega
 ```
 
-**Step 02 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 02 · Expected return line**
+
+```text
+float, the dimensionless positive factor that multiplies the weight of the narrowest retained Gaussian
+```
 
 **Step 02 · Oracle (gold solution)**
 
@@ -798,7 +805,11 @@ def compute_short_range_pressure(positions: "np.ndarray", charges: "np.ndarray",
     return pressure
 ```
 
-**Step 03 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 03 · Expected return line**
+
+```text
+np.ndarray of shape (3, 3), the symmetric short-range Coulomb pressure tensor in e^2 / Angstrom^4, indexed (x, y, z) = (0, 1, 2)
+```
 
 **Step 03 · Oracle (gold solution)**
 
@@ -985,7 +996,11 @@ def compute_structure_factor_power(positions: "np.ndarray", charges: "np.ndarray
     return power
 ```
 
-**Step 04 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 04 · Expected return line**
+
+```text
+np.ndarray of shape (K,), the float squared modulus of the charge structure factor in e^2 at each mode, in the order of the rows of modes
+```
 
 **Step 04 · Oracle (gold solution)**
 
@@ -1164,7 +1179,11 @@ def compute_long_range_pressure(positions: "np.ndarray", charges: "np.ndarray", 
     return radial, nonradial
 ```
 
-**Step 05 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 05 · Expected return line**
+
+```text
+tuple (radial, nonradial) of two float np.ndarray of shape (3, 3) in e^2 / Angstrom^4: the radial part (a multiple of the identity tensor) and the symmetric non-radial part of the long-range pressure tensor
+```
 
 **Step 05 · Oracle (gold solution)**
 
@@ -1358,7 +1377,11 @@ def compute_nonradial_normalization(cell: "np.ndarray", b: float, sigma: float, 
     return normalization
 ```
 
-**Step 06 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 06 · Expected return line**
+
+```text
+float, the dimensionless normalization constant of the non-radial Fourier-mode importance distribution over the truncated mode set
+```
 
 **Step 06 · Oracle (gold solution)**
 
@@ -1534,7 +1557,11 @@ def compute_nonradial_variance(positions: "np.ndarray", charges: "np.ndarray", c
     return variance
 ```
 
-**Step 07 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 07 · Expected return line**
+
+```text
+float, the single-mode variance of the (mu, nu) component of the non-radial random-batch estimate in e^4 / Angstrom^8
+```
 
 **Step 07 · Oracle (gold solution)**
 
@@ -1749,7 +1776,11 @@ def compute_pressure_relative_error(positions: "np.ndarray", charges: "np.ndarra
     return relative_error
 ```
 
-**Step 08 · Expected return line**: leave this field empty in Studio (clear any text already there).
+**Step 08 · Expected return line**
+
+```text
+float, the dimensionless relative standard error: the standard deviation of the batch estimate of the (mu, nu) pressure component divided by the magnitude of its deterministic sum-of-Gaussians value
+```
 
 **Step 08 · Oracle (gold solution)**
 
