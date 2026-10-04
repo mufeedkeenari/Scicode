@@ -6,19 +6,15 @@ Identifies the sum-of-Gaussians approximation of the pressure kernel $1/r^3$, wi
 
 #### Category
 
-Browsing
+Scientific Reasoning
 
 #### Weight
 
-3
+5
 
 #### Description
 
-This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent prefactors, such as $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$, count. A series with a different prefactor (for example the $1/r$ weights $(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{\ell}\tilde\sigma)$), widths $\tilde b^{\ell}\tilde\sigma$ without the factor $\sqrt2$, or a retained range other than $\ell=0,\dots,\tilde M-1$ does not count.
-
-#### Source
-
-https://arxiv.org/abs/2602.23582
+This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent forms count, such as the prefactor $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$ or the standard-deviation form $\tilde w_\ell e^{-r^2/(2\sigma_\ell^2)}$ with $\sigma_\ell=\tilde b^{\ell}\tilde\sigma$ and the same weights. A series with a different prefactor (for example the $1/r$ weights $(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{\ell}\tilde\sigma)$), Gaussians $e^{-r^2/(\tilde b^{2\ell}\tilde\sigma^2)}$ without the factor 2 in the exponent, or a retained range other than $\ell=0,\dots,\tilde M-1$ does not count.
 
 ### 2
 
@@ -32,7 +28,7 @@ Browsing
 
 #### Weight
 
-5
+10
 
 #### Description
 
@@ -76,11 +72,11 @@ Scientific Reasoning
 
 #### Weight
 
-4
+5
 
 #### Description
 
-This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count. An expression that omits the $-\tfrac{\tilde s_\ell^2}{2}k\otimes k$ term, uses $\tilde s_\ell^3$ in place of $\tilde s_\ell^5$, or has a prefactor other than $\pi^{3/2}/(4V^2)$ does not count.
+This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count, and so does the $xy$ component alone, $P^{\mathcal F}_{xy}=-\frac{\pi^{3/2}}{8V^2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7e^{-\tilde s_\ell^2|k|^2/4}k_xk_y|\rho(k)|^2$. An expression that omits the $-\tfrac{\tilde s_\ell^2}{2}k\otimes k$ term, uses $\tilde s_\ell^3$ in place of $\tilde s_\ell^5$, or has a different overall prefactor does not count.
 
 ### 5
 
@@ -104,7 +100,7 @@ This makes $k\cdot r=2\pi\,m\cdot s$ for fractional coordinates $s$ and reproduc
 
 #### Criterion
 
-Computes the rescaling factor $\tilde\omega$ of the narrowest retained Gaussian weight as 1.0114 (accepting 1.0112 to 1.0116).
+Computes the rescaling factor $\tilde\omega$ of the narrowest retained Gaussian weight as 1.0114 (accepting 1.0110 to 1.0116, or 1.01 when reported to three significant figures).
 
 #### Category
 
@@ -112,11 +108,11 @@ Scientific Reasoning
 
 #### Weight
 
-4
+5
 
 #### Description
 
-Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %. Values outside 1.0112 to 1.0116, including $\tilde\omega=1$ (no rescaling), do not count.
+Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392, which rounds to 1.011 at four and 1.01 at three significant figures. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %. A value reported to four or more significant figures outside 1.0110 to 1.0116, such as 1.0106, or $\tilde\omega=1$ (no rescaling), does not count.
 
 ### 7
 
@@ -130,7 +126,7 @@ Scientific Reasoning
 
 #### Weight
 
-5
+7
 
 #### Description
 
@@ -148,7 +144,7 @@ Scientific Reasoning
 
 #### Weight
 
-5
+7
 
 #### Description
 
@@ -166,11 +162,11 @@ Scientific Reasoning
 
 #### Weight
 
-3
+5
 
 #### Description
 
-This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent form that makes the sampling distribution explicit, such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$ for the non-radial estimate, counts. Using the source's variance bound as an equality, weighting by a distribution other than $\mathscr P$, or omitting the $-\mu^2$ term does not count.
+This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. The identity counts when written for the distribution the response actually samples from, whichever proposal that is (criterion 2 grades the proposal), including equivalent forms such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$. A denominator that differs from the sampled distribution, the source's variance bound used as an equality, or a missing $-\mu^2$ term does not count.
 
 ### 10
 
@@ -184,7 +180,7 @@ Scientific Reasoning
 
 #### Weight
 
-7
+8
 
 #### Description
 
@@ -202,7 +198,7 @@ Scientific Reasoning
 
 #### Weight
 
-8
+10
 
 #### Description
 

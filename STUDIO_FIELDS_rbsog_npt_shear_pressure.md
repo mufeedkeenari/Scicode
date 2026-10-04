@@ -71,7 +71,7 @@ random batch sum-of-Gaussians NPT ensemble pressure tensor 1/r^3 kernel splittin
 **Justification**
 
 ```markdown
-The solver needs the method's pressure-specific constructions, which are not standard Ewald or energy-splitting results: the bilateral-series sum-of-Gaussians approximation of the pressure-related $1/r^3$ kernel with its weights and widths for the parameters $\tilde b,\tilde\sigma$ and its $\tilde M$-term truncation; the split of the long-range pressure tensor into a radial part proportional to the identity and a non-radial part along $k\otimes k$; and the non-radial importance distribution over Fourier modes, with its $|k|^4$ and $\tilde s_\ell^7$ weighting, that defines the single-mode random-batch estimate of the non-radial pressure. These choices fix the real-space kernel, the long-range tensor and the estimator variance; they cannot be inferred from generic Ewald or random-batch Ewald formulations, which use a different splitting and a single proposal.
+The solver needs the method's pressure-specific constructions for the long-range part, which are not standard Ewald or energy-splitting results: the split of the long-range pressure tensor into a radial part proportional to the identity and a non-radial part along $k\otimes k$, with the radial random-batch estimate isotropic; and the non-radial importance distribution over Fourier modes, with its $|k|^4$ and $\tilde s_\ell^7$ weighting, that defines the single-mode random-batch estimate of the non-radial pressure. These choices fix which part of the estimate carries the shear noise and the estimator variance; they cannot be inferred from generic Ewald or random-batch Ewald formulations, which use a different kernel splitting and a single proposal.
 ```
 
 **Target Source**
@@ -142,25 +142,19 @@ Identifies the sum-of-Gaussians approximation of the pressure kernel $1/r^3$, wi
 **Item 1 · Category**
 
 ```text
-Browsing
+Scientific Reasoning
 ```
 
 **Item 1 · Weight**
 
 ```text
-3
+5
 ```
 
 **Item 1 · Description**
 
 ```markdown
-This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent prefactors, such as $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$, count. A series with a different prefactor (for example the $1/r$ weights $(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{\ell}\tilde\sigma)$), widths $\tilde b^{\ell}\tilde\sigma$ without the factor $\sqrt2$, or a retained range other than $\ell=0,\dots,\tilde M-1$ does not count.
-```
-
-**Item 1 · Source**
-
-```text
-https://arxiv.org/abs/2602.23582
+This is the bilateral-series approximation of $r^{-\beta}$ at $\beta=3$, with the narrowest retained width $\sqrt2\tilde\sigma=4.243$ Å for $\tilde\sigma=3$ Å. Algebraically equivalent forms count, such as the prefactor $\sqrt2\ln\tilde b/(\sqrt\pi\,\tilde\sigma^3)\,\tilde b^{-3\ell}$ or the standard-deviation form $\tilde w_\ell e^{-r^2/(2\sigma_\ell^2)}$ with $\sigma_\ell=\tilde b^{\ell}\tilde\sigma$ and the same weights. A series with a different prefactor (for example the $1/r$ weights $(\pi/2)^{-1/2}\ln\tilde b/(\tilde b^{\ell}\tilde\sigma)$), Gaussians $e^{-r^2/(\tilde b^{2\ell}\tilde\sigma^2)}$ without the factor 2 in the exponent, or a retained range other than $\ell=0,\dots,\tilde M-1$ does not count.
 ```
 
 ### Rubric item 2
@@ -180,7 +174,7 @@ Browsing
 **Item 2 · Weight**
 
 ```text
-5
+10
 ```
 
 **Item 2 · Description**
@@ -244,13 +238,13 @@ Scientific Reasoning
 **Item 4 · Weight**
 
 ```text
-4
+5
 ```
 
 **Item 4 · Description**
 
 ```markdown
-This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count. An expression that omits the $-\tfrac{\tilde s_\ell^2}{2}k\otimes k$ term, uses $\tilde s_\ell^3$ in place of $\tilde s_\ell^5$, or has a prefactor other than $\pi^{3/2}/(4V^2)$ does not count.
+This follows from Poisson summation of the Fourier transform of the long-range kernel times $r\otimes r$, dropping $k=0$ for tinfoil boundary conditions and a neutral system. Equivalent forms, such as writing the radial and non-radial parts separately or summing over integer vectors $m$, count, and so does the $xy$ component alone, $P^{\mathcal F}_{xy}=-\frac{\pi^{3/2}}{8V^2}\sum_{k\ne0}\sum_\ell\tilde w_\ell\tilde s_\ell^7e^{-\tilde s_\ell^2|k|^2/4}k_xk_y|\rho(k)|^2$. An expression that omits the $-\tfrac{\tilde s_\ell^2}{2}k\otimes k$ term, uses $\tilde s_\ell^3$ in place of $\tilde s_\ell^5$, or has a different overall prefactor does not count.
 ```
 
 ### Rubric item 5
@@ -284,7 +278,7 @@ This makes $k\cdot r=2\pi\,m\cdot s$ for fractional coordinates $s$ and reproduc
 **Item 6 · Criterion**
 
 ```markdown
-Computes the rescaling factor $\tilde\omega$ of the narrowest retained Gaussian weight as 1.0114 (accepting 1.0112 to 1.0116).
+Computes the rescaling factor $\tilde\omega$ of the narrowest retained Gaussian weight as 1.0114 (accepting 1.0110 to 1.0116, or 1.01 when reported to three significant figures).
 ```
 
 **Item 6 · Category**
@@ -296,13 +290,13 @@ Scientific Reasoning
 **Item 6 · Weight**
 
 ```text
-4
+5
 ```
 
 **Item 6 · Description**
 
 ```markdown
-Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %. Values outside 1.0112 to 1.0116, including $\tilde\omega=1$ (no rescaling), do not count.
+Imposing $1/r_c^3=\sum_{\ell=0}^{9}\tilde w_\ell e^{-r_c^2/\tilde s_\ell^2}$ at $r_c=9$ Å, with $\tilde w_0\to\tilde\omega\tilde w_0$, gives 1.011392, which rounds to 1.011 at four and 1.01 at three significant figures. The range also accepts 1.011303, obtained with an untruncated tail, which changes the final answer by less than 0.01 %. A value reported to four or more significant figures outside 1.0110 to 1.0116, such as 1.0106, or $\tilde\omega=1$ (no rescaling), does not count.
 ```
 
 ### Rubric item 7
@@ -322,7 +316,7 @@ Scientific Reasoning
 **Item 7 · Weight**
 
 ```text
-5
+7
 ```
 
 **Item 7 · Description**
@@ -348,7 +342,7 @@ Scientific Reasoning
 **Item 8 · Weight**
 
 ```text
-5
+7
 ```
 
 **Item 8 · Description**
@@ -374,13 +368,13 @@ Scientific Reasoning
 **Item 9 · Weight**
 
 ```text
-3
+5
 ```
 
 **Item 9 · Description**
 
 ```markdown
-This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. An equivalent form that makes the sampling distribution explicit, such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$ for the non-radial estimate, counts. Using the source's variance bound as an equality, weighting by a distribution other than $\mathscr P$, or omitting the $-\mu^2$ term does not count.
+This exact identity, applied with $f$ the $P_{xy}$ summand of the non-radial tensor and $\mathscr P=\mathscr P^{\rm nr}$, gives the requested variance. The identity counts when written for the distribution the response actually samples from, whichever proposal that is (criterion 2 grades the proposal), including equivalent forms such as $\mathbb E_{k\sim\mathscr P}\big[(f(k)/\mathscr P(k))^2\big]-\mu^2$. A denominator that differs from the sampled distribution, the source's variance bound used as an equality, or a missing $-\mu^2$ term does not count.
 ```
 
 ### Rubric item 10
@@ -400,7 +394,7 @@ Scientific Reasoning
 **Item 10 · Weight**
 
 ```text
-7
+8
 ```
 
 **Item 10 · Description**
@@ -426,7 +420,7 @@ Scientific Reasoning
 **Item 11 · Weight**
 
 ```text
-8
+10
 ```
 
 **Item 11 · Description**
@@ -436,6 +430,8 @@ This equals $\sqrt{5.018\times10^{-7}/128}/|{-1.6542\times10^{-4}}|=6.261\times1
 ```
 
 ## 7 · Sub-problems (8 steps; step 08 is the final orchestrator)
+
+> **Expected return line fields: leave all eight empty.** The current writer skill has no such section. Studio renders this field into the module docstring as a `Returns` block, and the writer validator then fails S24 on every step. The return value is already documented in each public function's docstring.
 
 ### Step 01 · compute_pressure_kernel_gaussians
 
@@ -498,11 +494,7 @@ def compute_pressure_kernel_gaussians(b: float, sigma: float, n_terms: int) -> "
     return weights, widths
 ```
 
-**Step 01 · Expected return line**
-
-```text
-tuple (weights, widths) of two float np.ndarray of shape (n_terms,): the weights w_l in Angstrom^-3 (before rescaling of the narrowest weight) and the widths s_l in Angstrom of the terms w_l * exp(-r^2 / s_l^2), both ordered from the narrowest to the widest Gaussian
-```
+**Step 01 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 01 · Oracle (gold solution)**
 
@@ -638,11 +630,7 @@ def compute_narrowest_weight_factor(b: float, sigma: float, n_terms: int, r_cut:
     return omega
 ```
 
-**Step 02 · Expected return line**
-
-```text
-float, the dimensionless positive factor that multiplies the weight of the narrowest retained Gaussian
-```
+**Step 02 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 02 · Oracle (gold solution)**
 
@@ -790,11 +778,7 @@ def compute_short_range_pressure(positions: "np.ndarray", charges: "np.ndarray",
     return pressure
 ```
 
-**Step 03 · Expected return line**
-
-```text
-np.ndarray of shape (3, 3), the symmetric short-range Coulomb pressure tensor in e^2 / Angstrom^4, indexed (x, y, z) = (0, 1, 2)
-```
+**Step 03 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 03 · Oracle (gold solution)**
 
@@ -981,11 +965,7 @@ def compute_structure_factor_power(positions: "np.ndarray", charges: "np.ndarray
     return power
 ```
 
-**Step 04 · Expected return line**
-
-```text
-np.ndarray of shape (K,), the float squared modulus of the charge structure factor in e^2 at each mode, in the order of the rows of modes
-```
+**Step 04 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 04 · Oracle (gold solution)**
 
@@ -1164,11 +1144,7 @@ def compute_long_range_pressure(positions: "np.ndarray", charges: "np.ndarray", 
     return radial, nonradial
 ```
 
-**Step 05 · Expected return line**
-
-```text
-tuple (radial, nonradial) of two float np.ndarray of shape (3, 3) in e^2 / Angstrom^4: the radial part (a multiple of the identity tensor) and the symmetric non-radial part of the long-range pressure tensor
-```
+**Step 05 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 05 · Oracle (gold solution)**
 
@@ -1362,11 +1338,7 @@ def compute_nonradial_normalization(cell: "np.ndarray", b: float, sigma: float, 
     return normalization
 ```
 
-**Step 06 · Expected return line**
-
-```text
-float, the dimensionless normalization constant of the non-radial Fourier-mode importance distribution over the truncated mode set
-```
+**Step 06 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 06 · Oracle (gold solution)**
 
@@ -1542,11 +1514,7 @@ def compute_nonradial_variance(positions: "np.ndarray", charges: "np.ndarray", c
     return variance
 ```
 
-**Step 07 · Expected return line**
-
-```text
-float, the single-mode variance of the (mu, nu) component of the non-radial random-batch estimate in e^4 / Angstrom^8
-```
+**Step 07 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 07 · Oracle (gold solution)**
 
@@ -1761,11 +1729,7 @@ def compute_pressure_relative_error(positions: "np.ndarray", charges: "np.ndarra
     return relative_error
 ```
 
-**Step 08 · Expected return line**
-
-```text
-float, the dimensionless relative standard error: the standard deviation of the batch estimate of the (mu, nu) pressure component divided by the magnitude of its deterministic sum-of-Gaussians value
-```
+**Step 08 · Expected return line**: leave this field empty in Studio (clear any text already there).
 
 **Step 08 · Oracle (gold solution)**
 
